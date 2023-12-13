@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@types/koa": "^2.13.12",
+    "@types/koa-router": "^7.4.8",
     "nodemon": "^3.0.2",
     "ts-node": "^10.9.2",
     "tslint": "^5.20.1",
