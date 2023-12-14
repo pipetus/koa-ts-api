@@ -7,7 +7,8 @@
     "lint": "tslint --project tsconfig.json --format stylish",
     "build": "tsc",
     "serve": "ts-node src/server.ts",
-    "start": "nodemon"
+    "start": "nodemon",
+    "typeorm": "typeorm-ts-node-commonjs -d src/database/datasource"
   },
   "keywords": [],
   "author": "",
