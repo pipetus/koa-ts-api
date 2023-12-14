@@ -1,14 +1,22 @@
 import { Context } from 'koa'
 import * as HttpStatus from 'http-status-codes';
+import UserRepository from '../repositories/user_repository';
+import User from '../models/user';
 
 class UserController {
   async index(ctx: Context) {
-    ctx.body = [];
+    const users = await (new UserRepository()).findAll();
+    ctx.body = {
+      data: users
+    }
     ctx.status = HttpStatus.StatusCodes.OK;
   }
 
   async create(ctx: Context) {
-    ctx.body = {};
+    const user = await (new UserRepository()).create(ctx.request.body as User);
+    ctx.body = {
+      data: user
+    }
     ctx.status = HttpStatus.StatusCodes.CREATED;
   }
 
