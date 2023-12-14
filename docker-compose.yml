@@ -5,6 +5,8 @@ services:
     image: postgres:alpine
     restart: always
     container_name: ${APP_NAME}-db
+    expose:
+      - 5432
     ports:
       - 5432:5432
     env_file:
