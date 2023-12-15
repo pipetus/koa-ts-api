@@ -7,8 +7,6 @@ export default class UserRepository {
   public async create(user: User): Promise<User> {
     const repository = await this.connection.getRepository(User);
     const newUser = repository.create(user);
-    console.log(newUser);
-    console.log('---------')
     return repository.save(newUser);
   }
 
