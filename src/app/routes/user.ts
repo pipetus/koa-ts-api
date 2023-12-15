@@ -1,11 +1,14 @@
 import * as Router from 'koa-router';
 import user from '../controllers/user';
+import { DefaultState, Context } from 'koa';
+import { RouterContext } from '../router';
 
 const routerOpts: Router.IRouterOptions = {
   prefix: '/users'
 };
 
-const router: Router = new Router(routerOpts);
+// const router: Router = new Router(routerOpts);
+const router: Router = new Router<DefaultState, RouterContext>(routerOpts);
 
 router.get('/', user.index);
 router.get('/:id', user.show);
