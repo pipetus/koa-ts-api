@@ -4,7 +4,7 @@ import User from '../models/user';
 import UserSerializer from '../serializers/user_serializer';
 import { RouterContext } from '../router';
 
-class UserController {
+export class UserController {
   async index(ctx: RouterContext) {
     const users = await (new UserRepository()).findAll();
 

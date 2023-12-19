@@ -1,5 +1,5 @@
 import * as Router from 'koa-router';
-import user from '../controllers/user';
+import user from '../controllers/user_controller';
 import { DefaultState, Context } from 'koa';
 import { RouterContext } from '../router';
 
