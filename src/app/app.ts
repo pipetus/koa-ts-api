@@ -3,6 +3,7 @@ import * as bodyParser from 'koa-bodyparser';
 import errorHandler from './middleware/error_handling';
 // import initial from './middleware/initial';
 import router from './router';
+import 'dotenv/config';
 
 const app: Koa = new Koa();
 

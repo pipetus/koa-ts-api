@@ -1,22 +1,29 @@
+import 'reflect-metadata';
 import dataSource from "../../database/datasource";
 
-export class TestHelper {
-  private static instance: TestHelper;
+export class DbHelper {
+  private static instance: DbHelper;
 
   private constructor() {}
 
-  public static getInstance(): TestHelper {
-    if (!TestHelper.instance) {
-      TestHelper.instance = new TestHelper();
+  public static getInstance(): DbHelper {
+    if (!DbHelper.instance) {
+      DbHelper.instance = new DbHelper();
     }
 
-    return TestHelper.instance;
+    return DbHelper.instance;
   }
 
   private dbConnection: any;
 
   async setup() {
-    this.dbConnection = await dataSource.initialize();
+    try {
+      this.dbConnection = await dataSource.initialize();
+      console.log('Database connection established');
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   }
 
   async teardown() {

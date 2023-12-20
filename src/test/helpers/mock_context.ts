@@ -1,9 +1,9 @@
 import { createMockContext } from '@shopify/jest-koa-mocks';
 import { RouterContext } from '../../app/router';
 
-export const routerMockContext = () => ({
+export const routerMockContext = (params?: {}) => ({
   ...createMockContext(),
-  params: {},
+  params,
   router: {},
   _matchedRoute: '',
   _matchedRouteName: '',
