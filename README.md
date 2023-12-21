@@ -21,6 +21,7 @@ There's also the possibility to use [**nodemon**](https://www.npmjs.com/package/
   - [Usage](#usage)
     - [Boot](#boot)
     - [Development conventions](#development-conventions)
+    - [Testing](#testing)
   - [Acknowledgements](#acknowledgements)
 
 ## Installation
@@ -88,6 +89,17 @@ Keeping in mind a basic workflow of creating and endpoint, supporting RESTful ac
 5. Access persistence layer by means of *repositories* (`src/app/repositories/*.ts`).
 6. Return data using *serializers* (`src/app/serializers`); these respond to JSON API format.
 7. Additionally, if needed, perform any model changes by means of *migrations* (`src/database/migrations`).
+
+### Testing
+
+**Jest** is used as the testing framework, along with a few additional libraries to perform some tasks such as creating objects via factories.
+
+Keeping in mind the project's basic form, testing encouraged on:
+
+- **Entities**
+- **Controllers**: a sample is provided, following the approach of *arrange* (prepare the database and the context of a request), *act* (calling the actual action) and *assert* (perform expectation matching).
+- **Requests**: similar to controllers, only at API level.
+- **Services**
 
 ## Acknowledgements
 This project is heavily based on most of [these ideas of Matt Chapman's](https://inviqa.com/blog/how-build-basic-api-typescript-koa-and-typeorm).
