@@ -19,7 +19,6 @@ export class DbHelper {
   async setup() {
     try {
       this.dbConnection = await dataSource.initialize();
-      console.log('Database connection established');
     } catch (error) {
       console.error(error);
       throw error;

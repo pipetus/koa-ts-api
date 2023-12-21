@@ -27,7 +27,9 @@
     "typeorm": "^0.3.17"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.3.1",
     "@jest/globals": "^29.7.0",
+    "@jorgebodega/typeorm-factory": "^1.4.0",
     "@shopify/jest-koa-mocks": "^5.1.1",
     "@types/jest": "^29.5.11",
     "@types/jsonapi-serializer": "^3.6.8",
