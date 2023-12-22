@@ -89,6 +89,7 @@ Keeping in mind a basic workflow of creating and endpoint, supporting RESTful ac
 5. Access persistence layer by means of *repositories* (`src/app/repositories/*.ts`).
 6. Return data using *serializers* (`src/app/serializers`); these respond to JSON API format.
 7. Additionally, if needed, perform any model changes by means of *migrations* (`src/database/migrations`).
+8. Also, if needed, data can be pre-loaded by means of *seeders* (`src/database/seeders`).
 
 ### Testing
 
