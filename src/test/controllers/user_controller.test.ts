@@ -2,7 +2,7 @@ import { UserController } from '../../app/controllers/user_controller';
 import { routerMockContext } from '../mocks/mock_context';
 import { DbHelper } from '../helpers/db_helper';
 import * as HttpStatus from 'http-status-codes';
-import { UserFactory } from '../../database/factories/user_factory';
+import { UserFactory } from '../factories/user_factory';
 
 describe('UserController', () => {
   const factory = new UserFactory();

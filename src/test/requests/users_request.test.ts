@@ -1,6 +1,6 @@
 import { DbHelper } from '../helpers/db_helper';
 import * as HttpStatus from 'http-status-codes';
-import { UserFactory } from '../../database/factories/user_factory';
+import { UserFactory } from '../factories/user_factory';
 import * as request from 'supertest';
 import app from '../../app/app';
 

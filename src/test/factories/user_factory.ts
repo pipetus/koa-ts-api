@@ -1,7 +1,7 @@
 import { Factory, FactorizedAttrs } from '@jorgebodega/typeorm-factory';
 import { faker } from '@faker-js/faker'
 import User from '../../app/models/user'
-import dataSource from '../datasource';
+import dataSource from '../../database/datasource';
 
 export class UserFactory extends Factory<User> {
   protected entity = User;
