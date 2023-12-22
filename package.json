@@ -9,6 +9,7 @@
     "serve": "ts-node src/server.ts",
     "start": "nodemon",
     "typeorm": "typeorm-ts-node-commonjs -d src/database/datasource",
+    "db:seed": "ts-node ./node_modules/@jorgebodega/typeorm-seeding/dist/cli.js seed -d src/database/connection src/database/seeders/*.ts",
     "test:watch": "jest --watch",
     "test": "jest",
     "test:coverage": "jest --coverage"
@@ -29,7 +30,7 @@
   "devDependencies": {
     "@faker-js/faker": "^8.3.1",
     "@jest/globals": "^29.7.0",
-    "@jorgebodega/typeorm-factory": "^1.4.0",
+    "@jorgebodega/typeorm-seeding": "^6.0.1",
     "@shopify/jest-koa-mocks": "^5.1.1",
     "@types/jest": "^29.5.11",
     "@types/jsonapi-serializer": "^3.6.8",
@@ -37,6 +38,7 @@
     "@types/koa-bodyparser": "^4.3.12",
     "@types/koa-router": "^7.4.8",
     "@types/supertest": "^2.0.16",
+    "fishery": "^2.2.2",
     "jest": "^29.7.0",
     "nodemon": "^3.0.2",
     "supertest": "^6.3.3",

@@ -2,11 +2,9 @@ import { UserController } from '../../app/controllers/user_controller';
 import { routerMockContext } from '../mocks/mock_context';
 import { DbHelper } from '../helpers/db_helper';
 import * as HttpStatus from 'http-status-codes';
-import { UserFactory } from '../../database/factories/user_factory';
+import { userFactory } from '../factories/user';
 
 describe('UserController', () => {
-  const factory = new UserFactory();
-
   beforeAll(async () => {
     await DbHelper.getInstance().setup();
   })
@@ -19,7 +17,7 @@ describe('UserController', () => {
     it('returns an array of users', async () => {
       // Arrange
       const userController = new UserController();
-      const users = await factory.createMany(2);
+      const users = await userFactory.createList(2);
       const ctx = routerMockContext();
 
       // Act
@@ -56,7 +54,7 @@ describe('UserController', () => {
     it('returns a user', async () => {
       // Arrange
       const userController = new UserController();
-      const user = await factory.create()
+      const user = await userFactory.create()
       const ctx = routerMockContext({ params: { id: user.id } });
 
       // Act
@@ -111,7 +109,7 @@ describe('UserController', () => {
     it('updates a user', async () => {
       // Arrange
       const userController = new UserController();
-      const user = await factory.create();
+      const user = await userFactory.create();
       const ctx = routerMockContext({
         params: { id: user.id },
         body: {
