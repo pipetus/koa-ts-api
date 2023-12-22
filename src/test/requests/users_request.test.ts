@@ -1,11 +1,10 @@
 import { DbHelper } from '../helpers/db_helper';
 import * as HttpStatus from 'http-status-codes';
-import { UserFactory } from '../factories/user_factory';
+import { userFactory } from '../factories/user';
 import * as request from 'supertest';
 import app from '../../app/app';
 
 describe('UserController', () => {
-  const factory = new UserFactory();
 
   beforeAll(async () => {
     await DbHelper.getInstance().setup();
@@ -18,7 +17,7 @@ describe('UserController', () => {
   describe('index', () => {
     it('returns an array of users', async () => {
       // Arrange
-      const users = await factory.createMany(2);
+      const users = await userFactory.createList(2);
 
       // Act
       const response = await request(app.callback()).get('/users');
@@ -53,7 +52,7 @@ describe('UserController', () => {
   describe('show', () => {
     it('returns a user', async () => {
       // Arrange
-      const user = await factory.create()
+      const user = await userFactory.create()
 
       // Act
       const response = await request(app.callback()).get(`/users/${user.id}`);
@@ -105,7 +104,7 @@ describe('UserController', () => {
   describe('update', () => {
     it('updates a user', async () => {
       // Arrange
-      const user = await factory.create();
+      const user = await userFactory.create();
       const body = {
         name: 'Updated User',
         email: 'updated@email.com'
@@ -135,7 +134,7 @@ describe('UserController', () => {
   describe('destroy', () => {
     it('destroys a user', async () => {
       // Arrange
-      const user = await factory.create();
+      const user = await userFactory.create();
 
       // Act
       const response = await request(app.callback()).delete(`/users/${user.id}`);
