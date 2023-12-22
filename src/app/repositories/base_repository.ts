@@ -8,9 +8,11 @@ export interface IEntity {
 export default class BaseRepository<T extends IEntity> {
   private connection = dataSource;
   protected repository: Repository<T>;
+  relations: {};
 
-  constructor(modelClass: EntityTarget<T> | undefined) {
+  constructor(modelClass: EntityTarget<T> | undefined, relations: {} = {}) {
     this.repository = this.connection.getRepository(modelClass);
+    this.relations = relations;
   }
 
   public async create(entity: T): Promise<T> {
@@ -23,7 +25,10 @@ export default class BaseRepository<T extends IEntity> {
   }
 
   public async findById(id: number): Promise<T | undefined> {
-    const options: FindOneOptions<T> = { where: { id } } as FindOneOptions<T>;
+    const options: FindOneOptions<T> = {
+      where: { id },
+      relations: this.relations
+    } as FindOneOptions<T>;
     return this.repository.findOne(options);
   }
 

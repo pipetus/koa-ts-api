@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
 import Role from './role';
 
 @Entity('users')
@@ -15,7 +15,7 @@ export default class User {
   @Column({ type: 'varchar' })
   password: string;
 
-  @OneToOne(() => Role)
+  @ManyToOne(() => Role)
   @JoinColumn({ name: 'role_id' })
   role: Role;
 }

@@ -7,7 +7,7 @@ export default class UserSerializer {
 
   constructor(users: User[] | User) {
     this.serializer = new Serializer('users', {
-      attributes: ['id', 'name', 'email', 'password'],
+      attributes: ['id', 'name', 'email', 'password', 'role'],
     });
 
     this.users = users;
