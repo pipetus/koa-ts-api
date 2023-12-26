@@ -22,6 +22,7 @@ There's also the possibility to use [**nodemon**](https://www.npmjs.com/package/
     - [Boot](#boot)
     - [Development conventions](#development-conventions)
     - [Testing](#testing)
+  - [TODO](#todo)
   - [Acknowledgements](#acknowledgements)
 
 ## Installation
@@ -101,6 +102,15 @@ Keeping in mind the project's basic form, testing encouraged on:
 - **Controllers**: a sample is provided, following the approach of *arrange* (prepare the database and the context of a request), *act* (calling the actual action) and *assert* (perform expectation matching).
 - **Requests**: similar to controllers, only at API level.
 - **Services**
+
+## TODO
+
+- CORS/CSRF
+- Parameter validation
+- Swagger API doc
+- Handling of static content
+- Authentication and Authorization
+- Client to communicate with other APIs
 
 ## Acknowledgements
 This project is heavily based on most of [these ideas of Matt Chapman's](https://inviqa.com/blog/how-build-basic-api-typescript-koa-and-typeorm).
