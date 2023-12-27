@@ -6,17 +6,25 @@ import errorHandler from './middleware/error_handling';
 import router from './router';
 import 'dotenv/config';
 import { Loader as ConfigLoader } from '../config/loader';
+import * as Csrf from 'koa-csrf';
 
 const app: Koa = new Koa();
 
 // Load config
 ConfigLoader.getInstance().configure(config => {
-  app.keys = config.get('app.keys.session');
+  app.keys = [
+    ...config.get<string>('app.keys.session'),
+    ...config.get<string>('app.keys.csrf')
+  ];
 });
 
 app.use(errorHandler)
    .use(bodyParser())
    .use(session(app));
+
+if (ConfigLoader.getInstance().get('security.csrf.enabled')) {
+  app.use(new Csrf());
+}
 
 // Initial route
 // app.use(initial);
