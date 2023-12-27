@@ -3,5 +3,10 @@
     "csrf": {
       "enable": false
     }
+  },
+  "app": {
+    "keys": {
+      "session": ["session key"]
+    }
   }
 }
