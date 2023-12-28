@@ -22,6 +22,7 @@ There's also the possibility to use [**nodemon**](https://www.npmjs.com/package/
     - [Boot](#boot)
     - [Development conventions](#development-conventions)
     - [Testing](#testing)
+  - [WIP](#wip)
   - [TODO](#todo)
   - [Acknowledgements](#acknowledgements)
 
@@ -103,9 +104,12 @@ Keeping in mind the project's basic form, testing encouraged on:
 - **Requests**: similar to controllers, only at API level.
 - **Services**
 
+## WIP
+- CSRF
+
 ## TODO
 
-- CORS/CSRF
+- CORS
 - Parameter validation
 - Swagger API doc
 - Handling of static content

@@ -1,7 +1,7 @@
 {
   "security": {
     "csrf": {
-      "enable": true
+      "enabled": true
     }
   }
 }

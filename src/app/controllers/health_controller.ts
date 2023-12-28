@@ -14,7 +14,8 @@ export class HealthController {
         attributes: {
           name: 'koa-ts-api',
           version: '1.0.0',
-          config: ConfigLoader.getInstance().get()
+          config: ConfigLoader.getInstance().get(),
+          csrf: ctx.state._csrf
         }
       }
     };
