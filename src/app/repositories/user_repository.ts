@@ -1,8 +1,7 @@
-import { tr } from '@faker-js/faker';
-import User from '../models/user';
-import BaseRepository from './base_repository';
+import { User } from '../models/user';
+import { BaseRepository } from './base_repository';
 
-export default class UserRepository extends BaseRepository<User> {
+export class UserRepository extends BaseRepository<User> {
   constructor() {
     super(User, { role: true });
   }

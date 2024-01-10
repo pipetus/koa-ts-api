@@ -1,8 +1,14 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
-import Role from './role';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  JoinColumn,
+  ManyToOne,
+} from 'typeorm';
+import { Role } from './role';
 
 @Entity('users')
-export default class User {
+export class User {
   @PrimaryGeneratedColumn('increment')
   id: number;
 

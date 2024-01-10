@@ -1,12 +1,13 @@
-import * as HttpStatus from 'http-status-codes';
+import HttpStatus from 'http-status-codes';
 import { RouterContext } from '../router';
-import { Loader as ConfigLoader } from '../../config/loader';
-export class HealthController {
+
+class HealthController {
   async index(ctx: RouterContext) {
-    ctx.status = HttpStatus.StatusCodes.NO_CONTENT;
+    ctx.status = HttpStatus.NO_CONTENT;
   }
 
   async show(ctx: RouterContext) {
+    ctx.status = HttpStatus.OK;
     ctx.body = {
       data: {
         type: 'health',
@@ -14,12 +15,10 @@ export class HealthController {
         attributes: {
           name: 'koa-ts-api',
           version: '1.0.0',
-          config: ConfigLoader.getInstance().get(),
-          csrf: ctx.state._csrf
-        }
-      }
+          csrf: ctx.state._csrf,
+        },
+      },
     };
-    ctx.status = HttpStatus.StatusCodes.OK;
   }
 }
 

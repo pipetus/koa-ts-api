@@ -1,52 +1,54 @@
-import * as HttpStatus from 'http-status-codes';
-import UserRepository from '../repositories/user_repository';
-import User from '../models/user';
-import UserSerializer from '../serializers/user_serializer';
+import HttpStatus from 'http-status-codes';
+import { User } from '../models';
+import { UserRepository } from '../repositories';
 import { RouterContext } from '../router';
+import { UserSerializer } from '../serializers';
 
-export class UserController {
+class UserController {
   async index(ctx: RouterContext) {
-    const users = await (new UserRepository()).findAll();
+    const users = await new UserRepository().findAll();
 
     ctx.body = new UserSerializer(users).data();
-    ctx.status = HttpStatus.StatusCodes.OK;
+    ctx.status = HttpStatus.OK;
   }
 
   async create(ctx: RouterContext) {
-    const user = await (new UserRepository()).create(ctx.request.body as User);
+    const user = await new UserRepository().create(ctx.request.body as User);
 
     ctx.body = new UserSerializer(user).data();
-    ctx.status = HttpStatus.StatusCodes.CREATED;
+    ctx.status = HttpStatus.CREATED;
   }
 
   async show(ctx: RouterContext) {
-    const user = await (new UserRepository()).findById(Number(ctx.params.id));
+    const user = await new UserRepository().findById(Number(ctx.params.id));
 
     if (!user) {
-      ctx.throw(HttpStatus.StatusCodes.NOT_FOUND);
+      ctx.throw(HttpStatus.NOT_FOUND);
     }
 
     ctx.body = new UserSerializer(user).data();
-    ctx.status = HttpStatus.StatusCodes.OK;
+    ctx.status = HttpStatus.OK;
   }
 
   async update(ctx: RouterContext) {
-    const user = await (new UserRepository()).findById(Number(ctx.params.id));
+    const user = await new UserRepository().findById(Number(ctx.params.id));
 
     if (!user) {
-      ctx.throw(HttpStatus.StatusCodes.NOT_FOUND);
+      ctx.throw(HttpStatus.NOT_FOUND);
     }
 
-    const updated = await (new UserRepository()).update(Object.assign(user, ctx.request.body));
+    const updated = await new UserRepository().update(
+      Object.assign(user, ctx.request.body),
+    );
 
     ctx.body = new UserSerializer(updated).data();
-    ctx.status = HttpStatus.StatusCodes.OK;
+    ctx.status = HttpStatus.OK;
   }
 
   async destroy(ctx: RouterContext) {
-    await (new UserRepository()).delete(Number(ctx.params.id));
+    await new UserRepository().delete(Number(ctx.params.id));
 
-    ctx.status = HttpStatus.StatusCodes.NO_CONTENT;
+    ctx.status = HttpStatus.NO_CONTENT;
   }
 }
 

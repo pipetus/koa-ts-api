@@ -1,20 +1,19 @@
-import * as Router from 'koa-router';
-import user from '../controllers/user_controller';
-import { DefaultState, Context } from 'koa';
+import { DefaultState } from 'koa';
+import Router from 'koa-router';
+import { UserController } from '../controllers';
 import { RouterContext } from '../router';
 
 const routerOpts: Router.IRouterOptions = {
-  prefix: '/users'
+  prefix: '/users',
 };
 
-// const router: Router = new Router(routerOpts);
 const router: Router = new Router<DefaultState, RouterContext>(routerOpts);
 
-router.get('/', user.index);
-router.get('/:id', user.show);
-router.post('/', user.create);
-router.put('/:id', user.update);
-router.patch('/:id', user.update);
-router.delete('/:id', user.destroy);
+router.get('/', UserController.index);
+router.get('/:id', UserController.show);
+router.post('/', UserController.create);
+router.put('/:id', UserController.update);
+router.patch('/:id', UserController.update);
+router.delete('/:id', UserController.destroy);
 
 export default router;

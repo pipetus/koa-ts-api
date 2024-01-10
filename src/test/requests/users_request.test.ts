@@ -1,18 +1,17 @@
-import { DbHelper } from '../helpers/db_helper';
-import * as HttpStatus from 'http-status-codes';
-import { userFactory } from '../factories/user';
-import * as request from 'supertest';
+import HttpStatus from 'http-status-codes';
+import request from 'supertest';
 import app from '../../app/app';
+import { userFactory } from '../factories/user';
+import { DbHelper } from '../helpers/db_helper';
 
 describe('UserController', () => {
-
   beforeAll(async () => {
     await DbHelper.getInstance().setup();
-  })
+  });
 
   afterAll(async () => {
     await DbHelper.getInstance().teardown();
-  })
+  });
 
   describe('index', () => {
     it('returns an array of users', async () => {
@@ -23,7 +22,7 @@ describe('UserController', () => {
       const response = await request(app.callback()).get('/users');
 
       // Assert
-      expect(response.status).toEqual(HttpStatus.StatusCodes.OK)
+      expect(response.status).toEqual(HttpStatus.OK);
       expect(response.body).toMatchObject({
         data: expect.arrayContaining([
           expect.objectContaining({
@@ -32,8 +31,8 @@ describe('UserController', () => {
             attributes: expect.objectContaining({
               id: users[0].id,
               name: users[0].name,
-              email: users[0].email
-            })
+              email: users[0].email,
+            }),
           }),
           expect.objectContaining({
             id: users[1].id.toString(),
@@ -41,24 +40,24 @@ describe('UserController', () => {
             attributes: expect.objectContaining({
               id: users[1].id,
               name: users[1].name,
-              email: users[1].email
-            })
-          })
-        ])
-      })
+              email: users[1].email,
+            }),
+          }),
+        ]),
+      });
     });
   });
 
   describe('show', () => {
     it('returns a user', async () => {
       // Arrange
-      const user = await userFactory.create()
+      const user = await userFactory.create();
 
       // Act
       const response = await request(app.callback()).get(`/users/${user.id}`);
 
       // Assert
-      expect(response.status).toEqual(HttpStatus.StatusCodes.OK)
+      expect(response.status).toEqual(HttpStatus.OK);
       expect(response.body).toMatchObject({
         data: expect.objectContaining({
           id: user.id.toString(),
@@ -66,10 +65,10 @@ describe('UserController', () => {
           attributes: expect.objectContaining({
             id: user.id,
             name: user.name,
-            email: user.email
-          })
-        })
-      })
+            email: user.email,
+          }),
+        }),
+      });
     });
   });
 
@@ -79,14 +78,14 @@ describe('UserController', () => {
       const body = {
         name: 'Test User',
         email: 'any@email.com',
-        password: 'any-password'
-      }
+        password: 'any-password',
+      };
 
       // Act
       const response = await request(app.callback()).post('/users').send(body);
 
       // Assert
-      expect(response.status).toEqual(HttpStatus.StatusCodes.CREATED)
+      expect(response.status).toEqual(HttpStatus.CREATED);
       expect(response.body).toMatchObject({
         data: expect.objectContaining({
           id: expect.any(String),
@@ -94,9 +93,9 @@ describe('UserController', () => {
           attributes: expect.objectContaining({
             name: 'Test User',
             email: 'any@email.com',
-            password: 'any-password'
-          })
-        })
+            password: 'any-password',
+          }),
+        }),
       });
     });
   });
@@ -107,15 +106,16 @@ describe('UserController', () => {
       const user = await userFactory.create();
       const body = {
         name: 'Updated User',
-        email: 'updated@email.com'
-      }
-
+        email: 'updated@email.com',
+      };
 
       // Act
-      const response = await request(app.callback()).put(`/users/${user.id}`).send(body);
+      const response = await request(app.callback())
+        .put(`/users/${user.id}`)
+        .send(body);
 
       // Assert
-      expect(response.status).toEqual(HttpStatus.StatusCodes.OK)
+      expect(response.status).toEqual(HttpStatus.OK);
       expect(response.body).toMatchObject({
         data: expect.objectContaining({
           id: user.id.toString(),
@@ -124,10 +124,10 @@ describe('UserController', () => {
             id: user.id,
             name: 'Updated User',
             email: 'updated@email.com',
-            password: user.password
-          })
-        })
-      })
+            password: user.password,
+          }),
+        }),
+      });
     });
   });
 
@@ -137,10 +137,12 @@ describe('UserController', () => {
       const user = await userFactory.create();
 
       // Act
-      const response = await request(app.callback()).delete(`/users/${user.id}`);
+      const response = await request(app.callback()).delete(
+        `/users/${user.id}`,
+      );
 
       // Assert
-      expect(response.status).toEqual(HttpStatus.StatusCodes.NO_CONTENT);
+      expect(response.status).toEqual(HttpStatus.NO_CONTENT);
     });
   });
 });

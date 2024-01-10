@@ -1,4 +1,4 @@
-import UserService from '../../app/services/user_service';
+import { UserService } from '../../app/services';
 import { userFactory } from '../factories/user';
 import { DbHelper } from '../helpers/db_helper';
 
@@ -7,11 +7,11 @@ describe('Role assignment', () => {
 
   beforeAll(async () => {
     await DbHelper.getInstance().setup();
-  })
+  });
 
   afterAll(async () => {
     await DbHelper.getInstance().teardown();
-  })
+  });
 
   beforeEach(() => {
     userService = new UserService();
@@ -26,7 +26,7 @@ describe('Role assignment', () => {
 
     // Assert
     expect(user.role).toMatchObject({
-      name: 'admin'
+      name: 'admin',
     });
   });
 });

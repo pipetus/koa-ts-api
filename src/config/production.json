@@ -1,7 +1,0 @@
-{
-  "security": {
-    "csrf": {
-      "enabled": true
-    }
-  }
-}

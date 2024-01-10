@@ -75,7 +75,7 @@ Configure the project by updating the necessary settings. Key configuration file
 Start the server using:
 
 ```bash
-npm start
+npm dev
 ```
 
 This will run the project in development mode. Visit http://localhost:3000 (or the port defined in the environment variable) to interact with the API.
@@ -105,7 +105,7 @@ Keeping in mind the project's basic form, testing encouraged on:
 - **Services**
 
 ## WIP
-- CSRF
+- Swagger
 
 ## TODO
 
@@ -113,7 +113,7 @@ Keeping in mind the project's basic form, testing encouraged on:
 - Parameter validation
 - Swagger API doc
 - Handling of static content
-- Authentication and Authorization
+- Authorization
 - Client to communicate with other APIs
 
 ## Acknowledgements

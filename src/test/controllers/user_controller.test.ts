@@ -1,22 +1,22 @@
-import { UserController } from '../../app/controllers/user_controller';
-import { routerMockContext } from '../mocks/mock_context';
-import { DbHelper } from '../helpers/db_helper';
 import * as HttpStatus from 'http-status-codes';
+import { UserController } from '../../app/controllers';
 import { userFactory } from '../factories/user';
+import { DbHelper } from '../helpers/db_helper';
+import { routerMockContext } from '../mocks/mock_context';
 
 describe('UserController', () => {
   beforeAll(async () => {
     await DbHelper.getInstance().setup();
-  })
+  });
 
   afterAll(async () => {
     await DbHelper.getInstance().teardown();
-  })
+  });
 
   describe('index', () => {
     it('returns an array of users', async () => {
       // Arrange
-      const userController = new UserController();
+      const userController = UserController;
       const users = await userFactory.createList(2);
       const ctx = routerMockContext();
 
@@ -24,7 +24,7 @@ describe('UserController', () => {
       await userController.index(ctx);
 
       // Assert
-      expect(ctx.status).toEqual(HttpStatus.StatusCodes.OK)
+      expect(ctx.status).toEqual(HttpStatus.StatusCodes.OK);
       expect(ctx.body).toMatchObject({
         data: expect.arrayContaining([
           expect.objectContaining({
@@ -33,8 +33,8 @@ describe('UserController', () => {
             attributes: expect.objectContaining({
               id: users[0].id,
               name: users[0].name,
-              email: users[0].email
-            })
+              email: users[0].email,
+            }),
           }),
           expect.objectContaining({
             id: users[1].id.toString(),
@@ -42,26 +42,26 @@ describe('UserController', () => {
             attributes: expect.objectContaining({
               id: users[1].id,
               name: users[1].name,
-              email: users[1].email
-            })
-          })
-        ])
-      })
+              email: users[1].email,
+            }),
+          }),
+        ]),
+      });
     });
   });
 
   describe('show', () => {
     it('returns a user', async () => {
       // Arrange
-      const userController = new UserController();
-      const user = await userFactory.create()
+      const userController = UserController;
+      const user = await userFactory.create();
       const ctx = routerMockContext({ params: { id: user.id } });
 
       // Act
       await userController.show(ctx);
 
       // Assert
-      expect(ctx.status).toEqual(HttpStatus.StatusCodes.OK)
+      expect(ctx.status).toEqual(HttpStatus.StatusCodes.OK);
       expect(ctx.body).toMatchObject({
         data: expect.objectContaining({
           id: user.id.toString(),
@@ -69,28 +69,30 @@ describe('UserController', () => {
           attributes: expect.objectContaining({
             id: user.id,
             name: user.name,
-            email: user.email
-          })
-        })
-      })
+            email: user.email,
+          }),
+        }),
+      });
     });
   });
 
   describe('create', () => {
     it('creates a user', async () => {
       // Arrange
-      const userController = new UserController();
-      const ctx = routerMockContext({ body: {
-        name: 'Test User',
-        email: 'any@email.com',
-        password: 'any-password'
-      }});
+      const userController = UserController;
+      const ctx = routerMockContext({
+        body: {
+          name: 'Test User',
+          email: 'any@email.com',
+          password: 'any-password',
+        },
+      });
 
       // Act
       await userController.create(ctx);
 
       // Assert
-      expect(ctx.status).toEqual(HttpStatus.StatusCodes.CREATED)
+      expect(ctx.status).toEqual(HttpStatus.StatusCodes.CREATED);
       expect(ctx.body).toMatchObject({
         data: expect.objectContaining({
           id: expect.any(String),
@@ -98,9 +100,9 @@ describe('UserController', () => {
           attributes: expect.objectContaining({
             name: 'Test User',
             email: 'any@email.com',
-            password: 'any-password'
-          })
-        })
+            password: 'any-password',
+          }),
+        }),
       });
     });
   });
@@ -108,21 +110,21 @@ describe('UserController', () => {
   describe('update', () => {
     it('updates a user', async () => {
       // Arrange
-      const userController = new UserController();
+      const userController = UserController;
       const user = await userFactory.create();
       const ctx = routerMockContext({
         params: { id: user.id },
         body: {
           name: 'Updated User',
-          email: 'updated@email.com'
-        }
+          email: 'updated@email.com',
+        },
       });
 
       // Act
       await userController.update(ctx);
 
       // Assert
-      expect(ctx.status).toEqual(HttpStatus.StatusCodes.OK)
+      expect(ctx.status).toEqual(HttpStatus.StatusCodes.OK);
       expect(ctx.body).toMatchObject({
         data: expect.objectContaining({
           id: user.id.toString(),
@@ -131,16 +133,16 @@ describe('UserController', () => {
             id: user.id,
             name: 'Updated User',
             email: 'updated@email.com',
-            password: user.password
-          })
-        })
-      })
+            password: user.password,
+          }),
+        }),
+      });
     });
   });
 
   describe('destroy', () => {
     it('destroys a user', async () => {
-      const userController = new UserController();
+      const userController = UserController;
       const ctx = routerMockContext({ params: { id: 1 } });
 
       await userController.destroy(ctx);

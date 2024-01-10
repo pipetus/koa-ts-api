@@ -1,7 +1,9 @@
-import { Context } from 'koa'
 import * as HttpStatus from 'http-status-codes';
+import { Context, Next } from 'koa';
 
-export default async (ctx: Context, next: () => Promise<any>) => {
+export const initial = async (ctx: Context, next: Next) => {
   ctx.body = 'Hello World';
   ctx.status = HttpStatus.StatusCodes.OK;
-}
+
+  next();
+};

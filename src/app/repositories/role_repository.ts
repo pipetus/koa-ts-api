@@ -1,7 +1,7 @@
-import Role from '../models/role';
-import BaseRepository from './base_repository';
+import { Role } from '../models/role';
+import { BaseRepository } from './base_repository';
 
-export default class RoleRepository extends BaseRepository<Role> {
+export class RoleRepository extends BaseRepository<Role> {
   constructor() {
     super(Role);
   }

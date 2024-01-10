@@ -1,7 +1,7 @@
 import { Serializer } from 'jsonapi-serializer';
-import User from '../models/user';
+import { User } from '../models';
 
-export default class UserSerializer {
+export class UserSerializer {
   users: User | User[];
   private serializer: Serializer;
 

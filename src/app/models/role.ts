@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity('roles')
-export default class Role {
+export class Role {
   @PrimaryGeneratedColumn('increment')
   id: number;
 

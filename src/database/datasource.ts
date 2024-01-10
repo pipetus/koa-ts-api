@@ -1,12 +1,4 @@
-import * as dotenv from 'dotenv'
-import { DataSource } from 'typeorm'
-
-const env = process.env.NODE_ENV === 'test' ? '.env.test.local' : '.env'
-
-dotenv.config({
-  path: env,
-  override: true,
-})
+import { DataSource } from 'typeorm';
 
 export default new DataSource({
   type: 'postgres',
@@ -17,4 +9,4 @@ export default new DataSource({
   database: process.env.DB_NAME,
   entities: [`${__dirname}/../app/models/*.ts`],
   migrations: [`${__dirname}/migrations/*.{j,t}s`],
-})
+});

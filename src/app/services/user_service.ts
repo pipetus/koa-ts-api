@@ -1,8 +1,8 @@
-import User from '../models/user';
-import UserRepository from '../repositories/user_repository';
-import RoleRepository from '../repositories/role_repository';
+import { User } from '../models/user';
+import { RoleRepository } from '../repositories/role_repository';
+import { UserRepository } from '../repositories/user_repository';
 
-class UserService {
+export class UserService {
   private userRepository: UserRepository = new UserRepository();
   private roleRepository: RoleRepository = new RoleRepository();
 
@@ -12,5 +12,3 @@ class UserService {
     await this.userRepository.update(user);
   }
 }
-
-export default UserService;

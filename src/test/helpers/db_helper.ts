@@ -1,8 +1,10 @@
 import 'reflect-metadata';
-import dataSource from "../../database/datasource";
+import { DataSource } from 'typeorm';
+import dataSource from '../../database/datasource';
 
 export class DbHelper {
   private static instance: DbHelper;
+  private dbConnection: DataSource;
 
   private constructor() {}
 
@@ -14,8 +16,6 @@ export class DbHelper {
     return DbHelper.instance;
   }
 
-  private dbConnection: any;
-
   async setup() {
     try {
       this.dbConnection = await dataSource.initialize();
@@ -26,6 +26,6 @@ export class DbHelper {
   }
 
   async teardown() {
-    await this.dbConnection.close();
+    await this.dbConnection.destroy();
   }
 }
