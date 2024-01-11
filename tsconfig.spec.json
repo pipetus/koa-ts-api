@@ -1,5 +1,5 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "allowJs": true,
     "outDir": "dist/tests",
@@ -9,6 +9,7 @@
   "include": [
     "jest.config.ts",
     "src/**/*.test.ts",
+    "src/**/*.e2e-test.ts",
     "src/**/*.spec.ts",
     "src/**/*.d.ts"
   ]

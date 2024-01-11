@@ -1,7 +1,7 @@
 import { mock } from 'jest-mock-extended';
 import { UserController } from '../../app/controllers';
 import { UserService } from '../../app/services';
-import { routerMockContext } from '../mocks/mock_context';
+import { routerMockContext } from '../mocks/context';
 
 describe('UserController', () => {
   let userService: UserService;

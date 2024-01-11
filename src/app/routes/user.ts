@@ -1,3 +1,4 @@
+import { DefaultState } from 'koa';
 import Router from 'koa-router';
 import { Container } from 'typedi';
 import { UserController } from '../controllers';
@@ -8,7 +9,7 @@ const routerOpts: Router.IRouterOptions = {
 };
 
 const controller = Container.get<UserController>(UserController);
-const router: Router = new Router<unknown, RouterContext>(routerOpts);
+const router: Router = new Router<DefaultState, RouterContext>(routerOpts);
 
 router.get('/', (ctx: RouterContext) => controller.index(ctx));
 router.get('/:id', (ctx: RouterContext) => controller.show(ctx));

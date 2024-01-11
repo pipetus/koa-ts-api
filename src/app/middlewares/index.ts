@@ -1,3 +1,3 @@
 export * from './authentication';
-export * from './error_handling';
+export * from './errorHandling';
 export * from './initial';

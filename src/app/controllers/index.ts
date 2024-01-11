@@ -1,2 +1,2 @@
-export { default as healthController } from './health_controller';
-export * from './user_controller';
+export * from './HealthController';
+export * from './UserController';

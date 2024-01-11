@@ -1,10 +1,10 @@
 import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 
-import { errorHandler, authentication } from './middleware';
+import { errorHandler, authentication } from './middlewares';
 import router from './router';
 
-const app: Koa = new Koa();
+const app = new Koa();
 
 // Global middlewares
 app.use(errorHandler).use(bodyParser()).use(authentication);
