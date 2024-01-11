@@ -88,10 +88,9 @@ Keeping in mind a basic workflow of creating and endpoint, supporting RESTful ac
 2. Create a *controller* (`src/app/controllers/*.ts`); these are going to receive a custom router context.
 3. Perform logic using *services* (`src/app/services/*.ts`).
 4. Use *models* (`src/app/models/*.ts`); these are TypeORM Entities.
-5. Access persistence layer by means of *repositories* (`src/app/repositories/*.ts`).
-6. Return data using *serializers* (`src/app/serializers`); these respond to JSON API format.
-7. Additionally, if needed, perform any model changes by means of *migrations* (`src/database/migrations`).
-8. Also, if needed, data can be pre-loaded by means of *seeders* (`src/database/seeders`).
+5. Return data using *serializers* (`src/app/serializers`); these respond to JSON API format.
+6. Additionally, if needed, perform any model changes by means of *migrations* (`src/database/migrations`).
+7. Also, if needed, data can be pre-loaded by means of *seeders* (`src/database/seeders`).
 
 ### Testing
 
@@ -109,8 +108,6 @@ Keeping in mind the project's basic form, testing encouraged on:
 
 ## TODO
 
-- CORS
-- Parameter validation
 - Swagger API doc
 - Handling of static content
 - Authorization
