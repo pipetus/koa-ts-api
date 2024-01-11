@@ -13,7 +13,7 @@ app.use(errorHandler);
 app.use(
   koaSwagger({
     title: 'Test',
-    routePrefix: '/docs', // host at /swagger instead of default /docs
+    routePrefix: '/docs',
     swaggerOptions: {
       spec,
     },

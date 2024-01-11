@@ -103,12 +103,7 @@ Keeping in mind the project's basic form, testing encouraged on:
 - **Requests**: similar to controllers, only at API level.
 - **Services**
 
-## WIP
-- Swagger
-
 ## TODO
-
-- Swagger API doc
 - Handling of static content
 - Authorization
 - Client to communicate with other APIs
