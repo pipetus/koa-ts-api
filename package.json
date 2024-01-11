@@ -8,6 +8,7 @@
     "prepare": "husky install",
     "lint": "eslint src --ext .ts,.js --fix",
     "build": "tsc",
+    "postbuild": "cp ./src/openapi.yml dist/",
     "start": "node dist/main.js",
     "dev": "nodemon",
     "db:reset": "ts-node -r dotenv/config ./src/database/operations/reset.ts",
@@ -29,10 +30,12 @@
     "koa": "^2.14.2",
     "koa-joi-router": "^8.0.0",
     "koa-jwt": "^4.0.4",
+    "koa2-swagger-ui": "^5.10.0",
     "pg": "^8.11.3",
     "reflect-metadata": "^0.1.14",
     "typedi": "^0.10.0",
-    "typeorm": "^0.3.17"
+    "typeorm": "^0.3.17",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.3.1",
@@ -45,6 +48,7 @@
     "@types/koa": "^2.13.12",
     "@types/koa-joi-router": "^8.0.7",
     "@types/supertest": "^2.0.16",
+    "@types/yamljs": "^0.2.34",
     "@typescript-eslint/eslint-plugin": "^6.18.1",
     "@typescript-eslint/parser": "^6.18.1",
     "eslint": "^8.56.0",
