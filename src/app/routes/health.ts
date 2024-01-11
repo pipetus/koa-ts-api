@@ -1,16 +1,14 @@
-import { DefaultState } from 'koa';
-import Router from 'koa-router';
+import { Spec } from 'koa-joi-router';
 import { Container } from 'typedi';
 import { HealthController } from '../controllers';
 import { RouterContext } from '../router';
 
-const routerOpts: Router.IRouterOptions = {
-  prefix: '/health',
-};
-
 const controller = Container.get<HealthController>(HealthController);
-const router: Router = new Router<DefaultState, RouterContext>(routerOpts);
 
-router.get('/', (ctx: RouterContext) => controller.index(ctx));
-
-export default router;
+export const healthRoutes: Spec[] = [
+  {
+    method: 'get',
+    path: '/health',
+    handler: (ctx: RouterContext) => controller.index(ctx),
+  },
+];

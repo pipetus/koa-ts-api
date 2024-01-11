@@ -1,28 +1,51 @@
-import { DefaultState } from 'koa';
-import Router from 'koa-router';
+import { Spec } from 'koa-joi-router';
 import { Container } from 'typedi';
 import DataSource from '../../database/datasource';
 import { UserController } from '../controllers';
+import { authentication } from '../middlewares';
 import { Role, User } from '../models';
 import { RouterContext } from '../router';
+import { validateGetAllUsers } from '../validators';
 
 const UserRepository = DataSource.getRepository(User);
 const RoleRepository = DataSource.getRepository(Role);
-const routerOpts: Router.IRouterOptions = {
-  prefix: '/users',
-};
 
 // TODO: Centralize this in one file which will be called in main.ts
 Container.set('UserRepository', UserRepository);
 Container.set('RoleRepository', RoleRepository);
 
 const controller = Container.get<UserController>(UserController);
-const router: Router = new Router<DefaultState, RouterContext>(routerOpts);
 
-router.get('/', (ctx: RouterContext) => controller.index(ctx));
-router.get('/:id', (ctx: RouterContext) => controller.show(ctx));
-router.post('/', (ctx: RouterContext) => controller.create(ctx));
-router.put('/:id', (ctx: RouterContext) => controller.update(ctx));
-router.delete('/:id', (ctx: RouterContext) => controller.destroy(ctx));
-
-export default router;
+export const userRoutes: Spec[] = [
+  {
+    method: 'get',
+    path: '/users',
+    pre: authentication,
+    validate: validateGetAllUsers,
+    handler: (ctx: RouterContext) => controller.index(ctx),
+  },
+  {
+    method: 'get',
+    path: '/users/:id',
+    pre: authentication,
+    handler: (ctx: RouterContext) => controller.show(ctx),
+  },
+  {
+    method: 'post',
+    path: '/users',
+    pre: authentication,
+    handler: (ctx: RouterContext) => controller.create(ctx),
+  },
+  {
+    method: 'put',
+    path: '/users/:id',
+    pre: authentication,
+    handler: (ctx: RouterContext) => controller.update(ctx),
+  },
+  {
+    method: 'delete',
+    path: '/users/:id',
+    pre: authentication,
+    handler: (ctx: RouterContext) => controller.destroy(ctx),
+  },
+];
