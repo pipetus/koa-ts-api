@@ -13,7 +13,7 @@
     "db:reset": "ts-node -r dotenv/config ./src/database/operations/reset.ts",
     "db:migrate": "NODE_OPTIONS='-r dotenv/config' npx typeorm-ts-node-commonjs migration:run -d ./src/database/datasource",
     "db:seed": "NODE_OPTIONS='-r dotenv/config' ts-node ./node_modules/@jorgebodega/typeorm-seeding/dist/cli.js seed -d src/database/connection src/database/seeders/*.ts",
-    "pretest": "npm run db:reset && npm run db:migrate && npm run db:seed && npm run dev",
+    "pretest:e2e": "npm run db:reset && npm run db:migrate && npm run db:seed",
     "test": "jest",
     "test:e2e": "jest --config ./src/test/e2e/jest.config.ts",
     "test:watch": "jest --watch",

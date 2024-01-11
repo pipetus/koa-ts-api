@@ -1,14 +1,13 @@
-import { Service } from 'typedi';
+import { Inject, Service } from 'typedi';
 import { Repository } from 'typeorm';
-import DataSource from '../../database/datasource';
 import { User, Role } from '../models';
 
 @Service()
 export class UserService {
-  private userRepository: Repository<User> = DataSource.getTreeRepository(User);
-  private roleRepository: Repository<Role> = DataSource.getTreeRepository(Role);
-
-  constructor() {}
+  constructor(
+    @Inject('UserRepository') private readonly userRepository: Repository<User>,
+    @Inject('RoleRepository') private readonly roleRepository: Repository<Role>,
+  ) {}
 
   public async findAll(): Promise<User[]> {
     return this.userRepository.find();

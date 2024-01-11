@@ -7,8 +7,9 @@ describe('UserController', () => {
   let userService: UserService;
   let controller: UserController;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     jest.clearAllMocks();
+
     userService = mock<UserService>();
     controller = new UserController(userService);
   });
