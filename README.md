@@ -85,12 +85,13 @@ This will run the project in development mode. Visit http://localhost:3000 (or t
 Keeping in mind a basic workflow of creating and endpoint, supporting RESTful access, the code provided in this project follows these conventions:
 
 1. Create a *router* for the endpoint (`src/app/routes/*.ts`).
-2. Create a *controller* (`src/app/controllers/*.ts`); these are going to receive a custom router context.
+2. Create a *controller* (`src/app/controllers/*.ts`) these are going to receive a custom router context.
 3. Perform logic using *services* (`src/app/services/*.ts`).
-4. Use *models* (`src/app/models/*.ts`); these are TypeORM Entities.
-5. Return data using *serializers* (`src/app/serializers`); these respond to JSON API format.
-6. Additionally, if needed, perform any model changes by means of *migrations* (`src/database/migrations`).
-7. Also, if needed, data can be pre-loaded by means of *seeders* (`src/database/seeders`).
+4. Perform validations using *validators* (`src/app/validators/*.ts`) these are Joi objects used to validate `body`, `params`, `query`.
+5. Use *models* (`src/app/models/*.ts`); these are TypeORM Entities.
+6. Return data using *serializers* (`src/app/serializers`) these respond to JSON API format.
+7. Additionally, if needed, perform any model changes by means of *migrations* (`src/database/migrations`).
+8. Also, if needed, data can be pre-loaded by means of *seeders* (`src/database/seeders`).
 
 ### Testing
 
